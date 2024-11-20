@@ -32,14 +32,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         $pdo->beginTransaction();
 
+    
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM appointments WHERE doctor_id = ? AND appointment_date = ? AND status != 'cancelled'");
         $stmt->execute([$doctor_id, $appointment_date]);
         $appointment_count = $stmt->fetchColumn();
 
-        if ($appointment_count >= 10) {
-            throw new Exception("This doctor is fully booked for the selected date.");
+    
+        $max_appointments = 10;
+
+        if ($appointment_count >= $max_appointments) {
+            throw new Exception("This doctor is fully booked for the selected date. Please choose another date.");
         }
 
+        
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM appointments WHERE doctor_id = ? AND appointment_date = ? AND appointment_time = ? AND status != 'cancelled'");
+        $stmt->execute([$doctor_id, $appointment_date, $appointment_time]);
+        $time_slot_count = $stmt->fetchColumn();
+
+        if ($time_slot_count > 0) {
+            throw new Exception("This time slot is already booked. Please choose another time.");
+        }
+
+        // Book the appointment
         $stmt = $pdo->prepare("INSERT INTO appointments (patient_id, doctor_id, appointment_date, appointment_time) VALUES (?, ?, ?, ?)");
         $stmt->execute([$patient_id, $doctor_id, $appointment_date, $appointment_time]);
 
