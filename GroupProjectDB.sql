@@ -1,40 +1,47 @@
+-- Create a database named "medical_appointment_system"
 CREATE DATABASE medical_appointment_system;
+
+-- Use the created database
 USE medical_appointment_system;
 
+-- Create a table for storing patient information
 CREATE TABLE patients (
-    patient_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    phone VARCHAR(20) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    patient_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each patient
+    first_name VARCHAR(50) NOT NULL,           -- Patient's first name
+    last_name VARCHAR(50) NOT NULL,            -- Patient's last name
+    email VARCHAR(100) UNIQUE NOT NULL,        -- Patient's email 
+    phone VARCHAR(20) NOT NULL,                -- Patient's phone number
+    password VARCHAR(255) NOT NULL,            -- Patient's password 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp of patient record creation
 );
 
+-- Create a table for storing doctor information
 CREATE TABLE doctors (
-    doctor_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    specialization VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    phone VARCHAR(20) NOT NULL
+    doctor_id INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each doctor
+    first_name VARCHAR(50) NOT NULL,           -- Doctor's first name
+    last_name VARCHAR(50) NOT NULL,            -- Doctor's last name
+    specialization VARCHAR(100) NOT NULL,      -- Doctor's field of specialization
+    email VARCHAR(100) UNIQUE NOT NULL,        -- Doctor's email 
+    phone VARCHAR(20) NOT NULL                 -- Doctor's phone number
 );
 
+-- Create a table for managing appointments
 CREATE TABLE appointments (
-    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT,
-    doctor_id INT,
-    appointment_date DATE NOT NULL,
-    appointment_time TIME NOT NULL,
-    status ENUM('scheduled', 'cancelled', 'completed') DEFAULT 'scheduled',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id)
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each appointment
+    patient_id INT,                                 -- ID of the patient (foreign key)
+    doctor_id INT,                                  -- ID of the doctor (foreign key)
+    appointment_date DATE NOT NULL,                 -- Date of the appointment
+    appointment_time TIME NOT NULL,                 -- Time of the appointment
+    status ENUM('scheduled', 'cancelled', 'completed') DEFAULT 'scheduled', -- Status of the appointment
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of appointment record creation
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id), -- Link to the patients table
+    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id)     -- Link to the doctors table
 );
 
-
+-- Create an index to optimize queries filtering by appointment date
 CREATE INDEX idx_appointment_date ON appointments(appointment_date);
 
+-- Insert sample data into the doctors table
 INSERT INTO doctors (first_name, last_name, specialization, email, phone) VALUES
 ('John', 'Smith', 'General Practice', 'john.smith@medicare.com', '(555) 123-4567'),
 ('Emily', 'Johnson', 'Pediatrics', 'emily.johnson@medicare.com', '(555) 234-5678'),
@@ -52,4 +59,5 @@ INSERT INTO doctors (first_name, last_name, specialization, email, phone) VALUES
 ('Elizabeth', 'Hernandez', 'Pulmonology', 'elizabeth.hernandez@medicare.com', '(555) 456-7890'),
 ('Charles', 'Moore', 'Rheumatology', 'charles.moore@medicare.com', '(555) 567-8901');
 
-Select * From patients
+-- Select all data from the patients table (likely for verification or debugging)
+SELECT * FROM patients;
