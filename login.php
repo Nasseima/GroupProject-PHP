@@ -1,3 +1,9 @@
+<!-- Programmer: Nasseima L., Sean Derrick S., Juan D.
+About: MediCare is a small fictional firm we used to portray our Medical Appointment System.
+Purpose: Displays the Login Page. Asks for email and password. If the user doesn't have a login
+then has a link to create one.
+Date Created: 11/16/2024
+-->
 <?php
 require_once 'db_connect.php';
 session_start();

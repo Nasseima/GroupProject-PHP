@@ -1,4 +1,12 @@
+<!-- Programmer: Nasseima L., Sean Derrick S., Juan D.
+About: MediCare is a small fictional firm we used to portray our Medical Appointment System.
+Purpose: Displays the Logout Page. Resets the session data and tells the user that
+they have safely logged out.
+Date Created: 11/17/2024
+-->
+
 <?php
+// Basically resets the session data.
 session_start();
 session_destroy();
 ?>

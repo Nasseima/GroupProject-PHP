@@ -1,3 +1,10 @@
+<!-- Programmer: Nasseima L., Sean Derrick S., Juan D.
+About: MediCare is a small fictional firm we used to portray our Medical Appointment System.
+Purpose: Displays the Home Page, showing a login and registration prompt if there is no data in session.
+Else, shows  the doctors availability link, booking page link and a link to the list of
+booking appointments the user has created.
+Date Created: 11/16/2024
+-->
 <?php
 session_start();
 
@@ -11,11 +18,11 @@ if (!$pdo) {
 
 $logged_in = isset($_SESSION['patient_id']);
 
-if ($logged_in) {
-    $stmt = $pdo->prepare("SELECT first_name, last_name FROM patients WHERE patient_id = ?");
-    $stmt->execute([$_SESSION['patient_id']]);
-    $user = $stmt->fetch();
-    $full_name = $user['first_name'] . ' ' . $user['last_name'];
+if ($logged_in) { //Checks if the user is logged in, then
+    $stmt = $pdo->prepare("SELECT first_name, last_name FROM patients WHERE patient_id = ?"); // Prepares stmt to select the users first and last name from the patients table
+    $stmt->execute([$_SESSION['patient_id']]); // Executes SQL statement for $_SESSION while passing the patient_id through safely
+    $user = $stmt->fetch(); // Grabs first name and last name
+    $full_name = $user['first_name'] . ' ' . $user['last_name']; // Sets the variable for full_name to the concatenation of the first and last.
 }
 ?>
 
@@ -25,6 +32,7 @@ if ($logged_in) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to MediCare</title>
+    <!-- Small Style Changes -->
     <style>
         body {
             font-family: Arial, sans-serif;

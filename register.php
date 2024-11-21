@@ -1,3 +1,8 @@
+<!-- Programmer: Nasseima L., Sean Derrick S., Juan D.
+About: MediCare is a small fictional firm we used to portray our Medical Appointment System.
+Purpose: Displays the registry page.
+Date Created: 11/17/2024
+-->
 <?php
 require_once 'db_connect.php';
 
