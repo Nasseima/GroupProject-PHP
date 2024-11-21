@@ -1,3 +1,8 @@
+<!-- Programmer: Nasseima L., Sean Derrick S., Juan D.
+About: MediCare is a small fictional firm we used to portray our Medical Appointment System.
+Purpose: Shows list of the appointments that the patient has made.
+Date Created: 11/17/2024
+-->
 <?php
 require_once 'db_connect.php';
 session_start();

@@ -18,7 +18,7 @@ if (!$pdo) {
 
 $logged_in = isset($_SESSION['patient_id']);
 
-if ($logged_in) { //Checks if the user is logged in, then
+if ($logged_in) { //Checks if the user is logged in, then...
     $stmt = $pdo->prepare("SELECT first_name, last_name FROM patients WHERE patient_id = ?"); // Prepares stmt to select the users first and last name from the patients table
     $stmt->execute([$_SESSION['patient_id']]); // Executes SQL statement for $_SESSION while passing the patient_id through safely
     $user = $stmt->fetch(); // Grabs first name and last name
@@ -94,7 +94,10 @@ if ($logged_in) { //Checks if the user is logged in, then
 </head>
 <body>
     <div class="container">
+        <!-- Displays booking, made appointments, and doctors list links
+        if the user is logged in -->
         <?php if ($logged_in): ?>
+            <!-- Welcomes the user using their full name -->
             <h1>Welcome back, <?php echo htmlspecialchars($full_name); ?>!</h1>
             <p class="welcome-message">What would you like to do today?</p>
             <div class="card-container">
@@ -115,6 +118,8 @@ if ($logged_in) { //Checks if the user is logged in, then
                 </div>
             </div>
             <a href="logout.php" class="btn logout-btn">Logout</a>
+        <!-- Displays the login and registration links if the
+        user is NOT logged in -->
         <?php else: ?>
             <h1>Welcome to MediCare</h1>
             <p class="welcome-message">Your trusted healthcare partner. Join us for quality medical care.</p>
