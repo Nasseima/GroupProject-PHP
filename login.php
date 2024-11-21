@@ -10,7 +10,9 @@ session_start();
 
 $message = '';
 
+// Checks if the request is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Gets the form data
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -140,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <h1>Login to MediCare</h1>
         <?php echo $message; ?>
+        <!-- Login Form that asks for the user's email and password -->
         <form method="post">
             <div class="input-group">
                 <input type="email" name="email" placeholder="Email" required>
@@ -147,12 +150,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="input-group">
                 <input type="password" name="password" placeholder="Password" required>
             </div>
+            <!-- Submission button -->
             <button type="submit">Login</button>
         </form>
         <div class="links">
+            <!-- Button link for registration form -->
             <p>Don't have an account? <a href="register.php">Register here</a></p>
         </div>
         <div class="navigation">
+            <!-- Navigation link to Home Page -->
             <a href="index.php" class="nav-btn">Home</a>
         </div>
     </div>

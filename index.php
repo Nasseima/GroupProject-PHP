@@ -104,16 +104,22 @@ if ($logged_in) { //Checks if the user is logged in, then...
                 <div class="card">
                     <div class="card-title">Book an Appointment</div>
                     <p>Schedule a new appointment with one of our doctors.</p>
+
+                    <!-- Button sends the user to the booking page -->
                     <a href="book_appointment.php" class="btn">Book Now</a>
                 </div>
                 <div class="card">
                     <div class="card-title">View My Appointments</div>
                     <p>Check your upcoming and past appointments.</p>
-                    <a href="view_appointments.php" class="btn">View Appointments</a>
+
+                    <!-- Button sends the user to Appointments Page -->
+                    <a href="view_appointments.php" class="btn">View Appointments</a> 
                 </div>
                 <div class="card">
                     <div class="card-title">Our Doctors</div>
                     <p>Learn more about our team of healthcare professionals.</p>
+
+                    <!-- Button sends the user to a list of Doctors and their practices -->
                     <a href="doctor_list.php" class="btn">Meet Our Doctors</a>
                 </div>
             </div>
@@ -127,11 +133,15 @@ if ($logged_in) { //Checks if the user is logged in, then...
                 <div class="card">
                     <div class="card-title">Login</div>
                     <p>Access your account to manage appointments and more.</p>
+
+                    <!-- Button sends the user to the login page -->
                     <a href="login.php" class="btn">Login</a>
                 </div>
                 <div class="card">
                     <div class="card-title">Register</div>
                     <p>New to MediCare? Create an account to get started.</p>
+
+                    <!-- Button sends the user to the registration page -->
                     <a href="register.php" class="btn">Register</a>
                 </div>
             </div>
